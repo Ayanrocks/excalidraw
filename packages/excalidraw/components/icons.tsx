@@ -358,6 +358,17 @@ export const EllipseIcon = createIcon(
   tablerIconProps,
 );
 
+// custom cylinder
+export const CylinderIcon = createIcon(
+  <g strokeWidth="1.5">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <ellipse cx="12" cy="7" rx="6" ry="3"></ellipse>
+    <path d="M6 7v10c0 1.657 2.686 3 6 3s6 -1.343 6 -3v-10"></path>
+  </g>,
+
+  tablerIconProps,
+);
+
 // tabler-icons: arrow-narrow-right
 export const ArrowIcon = createIcon(
   <g strokeWidth="1.5">

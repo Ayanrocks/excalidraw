@@ -230,6 +230,7 @@ export const generateRoughOptions = (
     case "iframe":
     case "embeddable":
     case "diamond":
+    case "cylinder":
     case "ellipse": {
       options.fillStyle = element.fillStyle;
       options.fill = isTransparent(element.backgroundColor)
@@ -875,6 +876,17 @@ const _generateElementShape = (
       );
       return shape;
     }
+    case "cylinder": {
+      const r = Math.min(element.width * 0.4, element.height * 0.2);
+      const w = element.width;
+      const h = element.height;
+      const path = `M 0 ${r} A ${w / 2} ${r} 0 1 0 ${w} ${r} A ${w / 2} ${r} 0 1 0 0 ${r} L 0 ${h - r} A ${w / 2} ${r} 0 0 0 ${w} ${h - r} L ${w} ${r}`;
+      const shape: ElementShapes[typeof element.type] = generator.path(
+        path,
+        generateRoughOptions(element, true, isDarkMode),
+      );
+      return shape;
+    }
     case "line":
     case "arrow": {
       let shape: ElementShapes[typeof element.type];
@@ -1087,6 +1099,7 @@ export const getElementShape = <Point extends GlobalPoint | LocalPoint>(
     case "iframe":
     case "text":
     case "selection":
+    case "cylinder":
       return getPolygonShape(element);
     case "arrow":
     case "line": {

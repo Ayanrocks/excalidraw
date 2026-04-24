@@ -306,6 +306,8 @@ import {
   actionFinalize,
   actionFlipHorizontal,
   actionFlipVertical,
+  actionRotateLeft90,
+  actionRotateRight90,
   actionGroup,
   actionPasteStyles,
   actionSelectAll,
@@ -9300,6 +9302,7 @@ class App extends React.Component<AppProps, AppState> {
       | "rectangle"
       | "diamond"
       | "ellipse"
+      | "cylinder"
       | "iframe"
       | "embeddable",
   ) {
@@ -12561,6 +12564,8 @@ class App extends React.Component<AppProps, AppState> {
       CONTEXT_MENU_SEPARATOR,
       actionFlipHorizontal,
       actionFlipVertical,
+      actionRotateLeft90,
+      actionRotateRight90,
       CONTEXT_MENU_SEPARATOR,
       actionToggleLinearEditor,
       CONTEXT_MENU_SEPARATOR,
