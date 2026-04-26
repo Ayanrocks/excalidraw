@@ -231,6 +231,7 @@ export const generateRoughOptions = (
     case "embeddable":
     case "diamond":
     case "cylinder":
+    case "loadbalancer":
     case "ellipse": {
       options.fillStyle = element.fillStyle;
       options.fill = isTransparent(element.backgroundColor)
@@ -887,6 +888,22 @@ const _generateElementShape = (
       );
       return shape;
     }
+    case "loadbalancer": {
+      const w = element.width;
+      const h = element.height;
+      const path = `
+        M 0 0 L ${w} 0 L ${w} ${h} L 0 ${h} Z 
+        M ${w * 0.25} ${h * 0.5} L ${w * 0.75} ${h * 0.25}
+        M ${w * 0.6} ${h * 0.2} L ${w * 0.75} ${h * 0.25} L ${w * 0.7} ${h * 0.4}
+        M ${w * 0.25} ${h * 0.5} L ${w * 0.75} ${h * 0.75}
+        M ${w * 0.6} ${h * 0.8} L ${w * 0.75} ${h * 0.75} L ${w * 0.7} ${h * 0.6}
+      `;
+      const shape: ElementShapes[typeof element.type] = generator.path(
+        path,
+        generateRoughOptions(element, true, isDarkMode),
+      );
+      return shape;
+    }
     case "line":
     case "arrow": {
       let shape: ElementShapes[typeof element.type];
@@ -1100,6 +1117,7 @@ export const getElementShape = <Point extends GlobalPoint | LocalPoint>(
     case "text":
     case "selection":
     case "cylinder":
+    case "loadbalancer":
       return getPolygonShape(element);
     case "arrow":
     case "line": {

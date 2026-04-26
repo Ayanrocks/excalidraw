@@ -282,8 +282,9 @@ export class API {
       case "diamond":
       case "ellipse":
       case "cylinder":
+      case "loadbalancer":
         element = newElement({
-          type: type as "rectangle" | "diamond" | "ellipse" | "cylinder",
+          type: type as "rectangle" | "diamond" | "ellipse" | "cylinder" | "loadbalancer",
           ...base,
         });
         break;

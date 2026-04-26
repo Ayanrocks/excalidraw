@@ -6,6 +6,7 @@ export const hasBackground = (type: ElementOrToolType) =>
   type === "embeddable" ||
   type === "ellipse" ||
   type === "cylinder" ||
+  type === "loadbalancer" ||
   type === "diamond" ||
   type === "line" ||
   type === "freedraw";
@@ -19,6 +20,7 @@ export const hasStrokeColor = (type: ElementOrToolType) =>
   type === "line" ||
   type === "text" ||
   type === "cylinder" ||
+  type === "loadbalancer" ||
   type === "embeddable";
 
 export const hasStrokeWidth = (type: ElementOrToolType) =>
@@ -28,6 +30,7 @@ export const hasStrokeWidth = (type: ElementOrToolType) =>
   type === "ellipse" ||
   type === "diamond" ||
   type === "cylinder" ||
+  type === "loadbalancer" ||
   type === "freedraw" ||
   type === "arrow" ||
   type === "line";
@@ -38,6 +41,7 @@ export const hasStrokeStyle = (type: ElementOrToolType) =>
   type === "embeddable" ||
   type === "ellipse" ||
   type === "cylinder" ||
+  type === "loadbalancer" ||
   type === "diamond" ||
   type === "arrow" ||
   type === "line";

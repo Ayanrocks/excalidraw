@@ -190,6 +190,7 @@ export const isBindableElement = (
       element.type === "frame" ||
       element.type === "magicframe" ||
       element.type === "cylinder" ||
+      element.type === "loadbalancer" ||
       (element.type === "text" && !element.containerId))
   );
 };
@@ -207,6 +208,7 @@ export const isRectanguloidElement = (
       element.type === "frame" ||
       element.type === "magicframe" ||
       element.type === "cylinder" ||
+      element.type === "loadbalancer" ||
       (element.type === "text" && !element.containerId))
   );
 };
@@ -226,6 +228,7 @@ export const isRectangularElement = (
       element.type === "frame" ||
       element.type === "magicframe" ||
       element.type === "cylinder" ||
+      element.type === "loadbalancer" ||
       element.type === "freedraw")
   );
 };
@@ -241,6 +244,7 @@ export const isTextBindableContainer = (
       element.type === "diamond" ||
       element.type === "ellipse" ||
       element.type === "cylinder" ||
+      element.type === "loadbalancer" ||
       isArrowElement(element))
   );
 };
@@ -260,6 +264,7 @@ export const isExcalidrawElement = (
     case "embeddable":
     case "ellipse":
     case "cylinder":
+    case "loadbalancer":
     case "arrow":
     case "freedraw":
     case "line":
@@ -283,6 +288,7 @@ export const isFlowchartNodeElement = (
     element.type === "rectangle" ||
     element.type === "ellipse" ||
     element.type === "cylinder" ||
+    element.type === "loadbalancer" ||
     element.type === "diamond"
   );
 };

@@ -530,7 +530,8 @@ export const convertToExcalidrawElements = (
       case "rectangle":
       case "ellipse":
       case "diamond":
-      case "cylinder": {
+      case "cylinder":
+      case "loadbalancer": {
         const width =
           element?.label?.text && element.width === undefined
             ? 0
@@ -664,6 +665,7 @@ export const convertToExcalidrawElements = (
       case "ellipse":
       case "diamond":
       case "cylinder":
+      case "loadbalancer":
       case "arrow": {
         if (element.label?.text) {
           let [container, text] = bindTextToContainer(

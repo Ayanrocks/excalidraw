@@ -369,6 +369,20 @@ export const CylinderIcon = createIcon(
   tablerIconProps,
 );
 
+// custom loadbalancer
+export const LoadbalancerIcon = createIcon(
+  <g strokeWidth="1.5">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+    <circle cx="8" cy="12" r="1" />
+    <circle cx="16" cy="8" r="1" />
+    <circle cx="16" cy="16" r="1" />
+    <path d="M 9 11 l 6 -3" />
+    <path d="M 9 13 l 6 3" />
+  </g>,
+  tablerIconProps,
+);
+
 // tabler-icons: arrow-narrow-right
 export const ArrowIcon = createIcon(
   <g strokeWidth="1.5">

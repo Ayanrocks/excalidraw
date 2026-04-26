@@ -147,6 +147,7 @@ export type ToolType =
   | "diamond"
   | "ellipse"
   | "cylinder"
+  | "loadbalancer"
   | "arrow"
   | "line"
   | "freedraw"

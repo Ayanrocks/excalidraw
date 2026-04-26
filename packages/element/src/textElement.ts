@@ -59,6 +59,9 @@ export const redrawTextBoundingBox = (
     );
   }
 
+  const isCylinderLike =
+    container?.type === "cylinder" || container?.type === "loadbalancer";
+
   const boundTextUpdates = {
     x: textElement.x,
     y: textElement.y,
@@ -66,7 +69,7 @@ export const redrawTextBoundingBox = (
     width: textElement.width,
     height: textElement.height,
     angle: (container
-      ? isArrowElement(container)
+      ? isArrowElement(container) || isCylinderLike
         ? 0
         : container.angle
       : textElement.angle) as Radians,
@@ -367,6 +370,11 @@ export const getContainerCoords = (container: NonDeletedExcalidrawElement) => {
     offsetX += container.width / 4;
     offsetY += container.height / 4;
   }
+  // Offset for the elliptical cap at the top of the cylinder
+  if (container.type === "cylinder") {
+    const r = Math.min(container.width * 0.4, container.height * 0.2);
+    offsetY += r;
+  }
   return {
     x: container.x + offsetX,
     y: container.y + offsetY,
@@ -378,6 +386,14 @@ export const getTextElementAngle = (
   container: ExcalidrawTextContainer | null,
 ) => {
   if (isArrowElement(container)) {
+    return 0;
+  }
+  // Keep text horizontal for cylinder/loadbalancer containers even when
+  // rotated (e.g. used as a pipe shape)
+  if (
+    container?.type === "cylinder" ||
+    container?.type === "loadbalancer"
+  ) {
     return 0;
   }
   if (!container) {
@@ -438,6 +454,8 @@ const VALID_CONTAINER_TYPES = new Set([
   "ellipse",
   "diamond",
   "arrow",
+  "cylinder",
+  "loadbalancer",
 ]);
 
 export const isValidTextContainer = (element: {
@@ -511,6 +529,12 @@ export const getBoundTextMaxHeight = (
     // The height of the largest rectangle inscribed inside a rhombus is
     // Math.round(height / 2) - https://github.com/excalidraw/excalidraw/pull/6265
     return Math.round(height / 2) - BOUND_TEXT_PADDING * 2;
+  }
+  if (container.type === "cylinder") {
+    // Subtract the height of both elliptical caps so text stays in the
+    // rectangular body area of the cylinder
+    const r = Math.min(container.width * 0.4, container.height * 0.2);
+    return height - 2 * r - BOUND_TEXT_PADDING * 2;
   }
   return height - BOUND_TEXT_PADDING * 2;
 };
