@@ -375,6 +375,11 @@ export const getContainerCoords = (container: NonDeletedExcalidrawElement) => {
     const r = Math.min(container.width * 0.4, container.height * 0.2);
     offsetY += r;
   }
+  // Loadbalancer: text positioned in the area between left rect and right squares
+  if (container.type === "loadbalancer") {
+    offsetX += container.width * 0.15;
+    offsetY += container.height * 0.25;
+  }
   return {
     x: container.x + offsetX,
     y: container.y + offsetY,
@@ -504,6 +509,10 @@ export const getBoundTextMaxWidth = (
     // Math.round(width / 2) - https://github.com/excalidraw/excalidraw/pull/6265
     return Math.round(width / 2) - BOUND_TEXT_PADDING * 2;
   }
+  if (container.type === "loadbalancer") {
+    // Text area is between the left source rect (15%) and right squares (10%)
+    return Math.round(width * 0.75) - BOUND_TEXT_PADDING * 2;
+  }
   return width - BOUND_TEXT_PADDING * 2;
 };
 
@@ -535,6 +544,10 @@ export const getBoundTextMaxHeight = (
     // rectangular body area of the cylinder
     const r = Math.min(container.width * 0.4, container.height * 0.2);
     return height - 2 * r - BOUND_TEXT_PADDING * 2;
+  }
+  if (container.type === "loadbalancer") {
+    // Text area spans the vertical center (25% to 75% of height)
+    return Math.round(height * 0.5) - BOUND_TEXT_PADDING * 2;
   }
   return height - BOUND_TEXT_PADDING * 2;
 };

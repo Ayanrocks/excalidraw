@@ -891,13 +891,34 @@ const _generateElementShape = (
     case "loadbalancer": {
       const w = element.width;
       const h = element.height;
-      const path = `
-        M 0 0 L ${w} 0 L ${w} ${h} L 0 ${h} Z 
-        M ${w * 0.25} ${h * 0.5} L ${w * 0.75} ${h * 0.25}
-        M ${w * 0.6} ${h * 0.2} L ${w * 0.75} ${h * 0.25} L ${w * 0.7} ${h * 0.4}
-        M ${w * 0.25} ${h * 0.5} L ${w * 0.75} ${h * 0.75}
-        M ${w * 0.6} ${h * 0.8} L ${w * 0.75} ${h * 0.75} L ${w * 0.7} ${h * 0.6}
-      `;
+      // AWS-style load balancer: source rect → three arrows → target squares
+      const sq = Math.min(w * 0.1, h * 0.12);
+      const path = [
+        // Left source rectangle (closed, filled)
+        `M 0 ${h * 0.25} L ${w * 0.15} ${h * 0.25}`,
+        `L ${w * 0.15} ${h * 0.75} L 0 ${h * 0.75} Z`,
+        // Top-right target square
+        `M ${w - sq} ${h * 0.1} L ${w} ${h * 0.1}`,
+        `L ${w} ${h * 0.1 + sq} L ${w - sq} ${h * 0.1 + sq} Z`,
+        // Middle-right target square
+        `M ${w - sq} ${h * 0.5 - sq / 2} L ${w} ${h * 0.5 - sq / 2}`,
+        `L ${w} ${h * 0.5 + sq / 2} L ${w - sq} ${h * 0.5 + sq / 2} Z`,
+        // Bottom-right target square
+        `M ${w - sq} ${h * 0.9 - sq} L ${w} ${h * 0.9 - sq}`,
+        `L ${w} ${h * 0.9} L ${w - sq} ${h * 0.9} Z`,
+        // Arrow: left rect → top square
+        `M ${w * 0.15} ${h * 0.5} L ${w - sq} ${h * 0.1 + sq / 2}`,
+        // Arrow: left rect → middle square
+        `M ${w * 0.15} ${h * 0.5} L ${w - sq} ${h * 0.5}`,
+        // Arrow: left rect → bottom square
+        `M ${w * 0.15} ${h * 0.5} L ${w - sq} ${h * 0.9 - sq / 2}`,
+        // Arrowhead: top
+        `M ${w * 0.7} ${h * 0.08} L ${w - sq} ${h * 0.1 + sq / 2} L ${w * 0.7} ${h * 0.28}`,
+        // Arrowhead: middle
+        `M ${w * 0.7} ${h * 0.42} L ${w - sq} ${h * 0.5} L ${w * 0.7} ${h * 0.58}`,
+        // Arrowhead: bottom
+        `M ${w * 0.7} ${h * 0.72} L ${w - sq} ${h * 0.9 - sq / 2} L ${w * 0.7} ${h * 0.92}`,
+      ].join(" ");
       const shape: ElementShapes[typeof element.type] = generator.path(
         path,
         generateRoughOptions(element, true, isDarkMode),
