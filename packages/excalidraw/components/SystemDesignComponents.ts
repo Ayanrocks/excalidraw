@@ -1,0 +1,28 @@
+export const SYSTEM_DESIGN_COMPONENTS = [
+  "Client",
+  "Application server",
+  "Multi Instance server",
+  "server",
+  "Multi Instance",
+  "Server",
+  "Relational DB",
+  "Object Storage",
+  "Cold Storage",
+  "Document DB",
+  "Columnar DB",
+  "Graph DB",
+  "Stack Storage",
+  "Cache",
+  "Auth & IAM",
+  "DNS",
+  "Load Balancer",
+  "Message Q",
+  "Pipeline",
+  "cloud",
+  "CDN",
+  "Archive",
+  "Mobile",
+  "Web Application",
+] as const;
+
+export type SystemDesignComponent = typeof SYSTEM_DESIGN_COMPONENTS[number];

@@ -65,6 +65,7 @@ import { ToolButton } from "./ToolButton";
 import { ToolPopover } from "./ToolPopover";
 import { Tooltip } from "./Tooltip";
 import DropdownMenu from "./dropdownMenu/DropdownMenu";
+import { SystemDesignDropdown } from "./SystemDesignDropdown";
 import { PropertiesPopover } from "./PropertiesPopover";
 import {
   EmbedIcon,
@@ -1182,6 +1183,7 @@ export const ShapesSwitcher = ({
       )}
       <div className="App-toolbar__divider" />
 
+      <SystemDesignDropdown />
       <DropdownMenu open={isExtraToolsMenuOpen}>
         <DropdownMenu.Trigger
           className={clsx("App-toolbar__extra-tools-trigger", {

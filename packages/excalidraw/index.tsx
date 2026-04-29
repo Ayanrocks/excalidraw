@@ -394,6 +394,11 @@ export {
   isSpreadsheetValidForChartType,
 } from "./charts";
 
+export {
+  SYSTEM_DESIGN_COMPONENTS,
+} from "./components/SystemDesignComponents";
+export type { SystemDesignComponent } from "./components/SystemDesignComponents";
+
 // -----------------------------------------------------------------------------
 // useExcalidrawStateValue() wrapper for host apps for the return type to reflect the
 // the potentially `undefined` value for initial render before the excalidrawAPI
