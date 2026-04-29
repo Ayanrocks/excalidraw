@@ -9303,7 +9303,6 @@ class App extends React.Component<AppProps, AppState> {
       | "diamond"
       | "ellipse"
       | "cylinder"
-      | "loadbalancer"
       | "iframe"
       | "embeddable",
   ) {

@@ -369,24 +369,6 @@ export const CylinderIcon = createIcon(
   tablerIconProps,
 );
 
-// custom loadbalancer — AWS-style distribution icon
-export const LoadbalancerIcon = createIcon(
-  <g strokeWidth="1.5">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <rect x="3" y="8" width="4" height="8" />
-    <rect x="18" y="4" width="3" height="3" />
-    <rect x="18" y="10.5" width="3" height="3" />
-    <rect x="18" y="17" width="3" height="3" />
-    <path d="M 7 12 L 18 5.5" />
-    <path d="M 7 12 L 18 12" />
-    <path d="M 7 12 L 18 18.5" />
-    <path d="M 15.5 3.5 L 18 5.5 L 15.5 7.5" />
-    <path d="M 15.5 10 L 18 12 L 15.5 14" />
-    <path d="M 15.5 16.5 L 18 18.5 L 15.5 20.5" />
-  </g>,
-  tablerIconProps,
-);
-
 // tabler-icons: arrow-narrow-right
 export const ArrowIcon = createIcon(
   <g strokeWidth="1.5">

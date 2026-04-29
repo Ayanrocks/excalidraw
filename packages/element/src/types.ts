@@ -93,10 +93,6 @@ export type ExcalidrawCylinderElement = _ExcalidrawElementBase & {
   type: "cylinder";
 };
 
-export type ExcalidrawLoadbalancerElement = _ExcalidrawElementBase & {
-  type: "loadbalancer";
-};
-
 export type ExcalidrawDiamondElement = _ExcalidrawElementBase & {
   type: "diamond";
 };
@@ -190,15 +186,13 @@ export type ExcalidrawGenericElement =
   | ExcalidrawRectangleElement
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
-  | ExcalidrawCylinderElement
-  | ExcalidrawLoadbalancerElement;
+  | ExcalidrawCylinderElement;
 
 export type ExcalidrawFlowchartNodeElement =
   | ExcalidrawRectangleElement
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
-  | ExcalidrawCylinderElement
-  | ExcalidrawLoadbalancerElement;
+  | ExcalidrawCylinderElement;
 
 export type ExcalidrawRectanguloidElement =
   | ExcalidrawRectangleElement
@@ -209,8 +203,7 @@ export type ExcalidrawRectanguloidElement =
   | ExcalidrawFrameLikeElement
   | ExcalidrawEmbeddableElement
   | ExcalidrawSelectionElement
-  | ExcalidrawCylinderElement
-  | ExcalidrawLoadbalancerElement;
+  | ExcalidrawCylinderElement;
 
 /**
  * ExcalidrawElement should be JSON serializable and (eventually) contain
@@ -280,16 +273,14 @@ export type ExcalidrawBindableElement =
   | ExcalidrawEmbeddableElement
   | ExcalidrawFrameElement
   | ExcalidrawMagicFrameElement
-  | ExcalidrawCylinderElement
-  | ExcalidrawLoadbalancerElement;
+  | ExcalidrawCylinderElement;
 
 export type ExcalidrawTextContainer =
   | ExcalidrawRectangleElement
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
   | ExcalidrawArrowElement
-  | ExcalidrawCylinderElement
-  | ExcalidrawLoadbalancerElement;
+  | ExcalidrawCylinderElement;
 
 export type ExcalidrawTextElementWithContainer = {
   containerId: ExcalidrawTextContainer["id"];
