@@ -452,6 +452,8 @@ export const intersectElementWithLineSegment = (
     case "selection":
     case "magicframe":
     case "cylinder":
+    case "queue":
+    case "cloud":
       return intersectRectanguloidWithLineSegment(
         element,
         elementsMap,

@@ -164,6 +164,8 @@ export type ElementShapes = {
   ellipse: Drawable;
   diamond: Drawable;
   cylinder: Drawable;
+  queue: Drawable;
+  cloud: Drawable;
   iframe: Drawable;
   embeddable: Drawable;
   freedraw: (Drawable | SVGPathString)[];

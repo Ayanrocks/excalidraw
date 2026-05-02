@@ -93,6 +93,14 @@ export type ExcalidrawCylinderElement = _ExcalidrawElementBase & {
   type: "cylinder";
 };
 
+export type ExcalidrawQueueElement = _ExcalidrawElementBase & {
+  type: "queue";
+};
+
+export type ExcalidrawCloudElement = _ExcalidrawElementBase & {
+  type: "cloud";
+};
+
 export type ExcalidrawDiamondElement = _ExcalidrawElementBase & {
   type: "diamond";
 };
@@ -186,12 +194,16 @@ export type ExcalidrawGenericElement =
   | ExcalidrawRectangleElement
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
+  | ExcalidrawQueueElement
+  | ExcalidrawCloudElement
   | ExcalidrawCylinderElement;
 
 export type ExcalidrawFlowchartNodeElement =
   | ExcalidrawRectangleElement
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
+  | ExcalidrawQueueElement
+  | ExcalidrawCloudElement
   | ExcalidrawCylinderElement;
 
 export type ExcalidrawRectanguloidElement =
@@ -203,6 +215,8 @@ export type ExcalidrawRectanguloidElement =
   | ExcalidrawFrameLikeElement
   | ExcalidrawEmbeddableElement
   | ExcalidrawSelectionElement
+  | ExcalidrawQueueElement
+  | ExcalidrawCloudElement
   | ExcalidrawCylinderElement;
 
 /**
@@ -273,6 +287,8 @@ export type ExcalidrawBindableElement =
   | ExcalidrawEmbeddableElement
   | ExcalidrawFrameElement
   | ExcalidrawMagicFrameElement
+  | ExcalidrawQueueElement
+  | ExcalidrawCloudElement
   | ExcalidrawCylinderElement;
 
 export type ExcalidrawTextContainer =
@@ -280,6 +296,8 @@ export type ExcalidrawTextContainer =
   | ExcalidrawDiamondElement
   | ExcalidrawEllipseElement
   | ExcalidrawArrowElement
+  | ExcalidrawQueueElement
+  | ExcalidrawCloudElement
   | ExcalidrawCylinderElement;
 
 export type ExcalidrawTextElementWithContainer = {
@@ -452,6 +470,6 @@ export type ExcalidrawLinearElementSubType =
   | "curvedArrow"
   | "elbowArrow";
 
-export type ConvertibleGenericTypes = "rectangle" | "diamond" | "ellipse" | "cylinder";
+export type ConvertibleGenericTypes = "rectangle" | "diamond" | "ellipse" | "cylinder" | "queue" | "cloud";
 export type ConvertibleLinearTypes = ExcalidrawLinearElementSubType;
 export type ConvertibleTypes = ConvertibleGenericTypes | ConvertibleLinearTypes;

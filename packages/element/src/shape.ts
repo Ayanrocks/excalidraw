@@ -231,6 +231,8 @@ export const generateRoughOptions = (
     case "embeddable":
     case "diamond":
     case "cylinder":
+    case "queue":
+    case "cloud":
     case "ellipse": {
       options.fillStyle = element.fillStyle;
       options.fill = isTransparent(element.backgroundColor)
@@ -881,6 +883,37 @@ const _generateElementShape = (
       const w = element.width;
       const h = element.height;
       const path = `M 0 ${r} A ${w / 2} ${r} 0 1 0 ${w} ${r} A ${w / 2} ${r} 0 1 0 0 ${r} L 0 ${h - r} A ${w / 2} ${r} 0 0 0 ${w} ${h - r} L ${w} ${r}`;
+      
+      const y1 = r + (h - 2 * r) * 0.33;
+      const y2 = r + (h - 2 * r) * 0.67;
+      const line1 = ` M 0 ${y1} A ${w / 2} ${r} 0 0 0 ${w} ${y1}`;
+      const line2 = ` M 0 ${y2} A ${w / 2} ${r} 0 0 0 ${w} ${y2}`;
+      
+      const shape: ElementShapes[typeof element.type] = generator.path(
+        path + line1 + line2,
+        generateRoughOptions(element, true, isDarkMode),
+      );
+      return shape;
+    }
+    case "queue": {
+      const r = Math.min(element.height * 0.4, element.width * 0.2);
+      const w = element.width;
+      const h = element.height;
+      
+      const arrowPath = ` M ${w / 2 - r} ${h / 4} L ${w / 2 + r} ${h / 2} L ${w / 2 - r} ${h * 3 / 4} M ${w / 2 - r * 2.5} ${h / 4} L ${w / 2 - r / 2} ${h / 2} L ${w / 2 - r * 2.5} ${h * 3 / 4}`;
+      const path = `M ${r} 0 A ${r} ${h / 2} 0 1 0 ${r} ${h} A ${r} ${h / 2} 0 1 0 ${r} 0 M ${w - r} 0 A ${r} ${h / 2} 0 1 0 ${w - r} ${h} M ${r} 0 L ${w - r} 0 M ${r} ${h} L ${w - r} ${h}` + arrowPath;
+      
+      const shape: ElementShapes[typeof element.type] = generator.path(
+        path,
+        generateRoughOptions(element, true, isDarkMode),
+      );
+      return shape;
+    }
+    case "cloud": {
+      const w = element.width;
+      const h = element.height;
+      const path = `M ${w * 0.25} ${h * 0.75} C ${w * 0.1} ${h * 0.75}, 0 ${h * 0.55}, ${w * 0.15} ${h * 0.4} C ${w * 0.15} ${h * 0.2}, ${w * 0.4} ${h * 0.1}, ${w * 0.5} ${h * 0.25} C ${w * 0.65} ${h * 0.05}, ${w * 0.9} ${h * 0.2}, ${w * 0.85} ${h * 0.45} C ${w} ${h * 0.5}, ${w * 0.95} ${h * 0.8}, ${w * 0.75} ${h * 0.75} Z`;
+      
       const shape: ElementShapes[typeof element.type] = generator.path(
         path,
         generateRoughOptions(element, true, isDarkMode),
@@ -1100,6 +1133,8 @@ export const getElementShape = <Point extends GlobalPoint | LocalPoint>(
     case "text":
     case "selection":
     case "cylinder":
+    case "queue":
+    case "cloud":
       return getPolygonShape(element);
     case "arrow":
     case "line": {
