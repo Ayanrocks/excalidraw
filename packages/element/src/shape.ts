@@ -889,10 +889,14 @@ const _generateElementShape = (
       const line1 = ` M 0 ${y1} A ${w / 2} ${r} 0 0 0 ${w} ${y1}`;
       const line2 = ` M 0 ${y2} A ${w / 2} ${r} 0 0 0 ${w} ${y2}`;
       
-      const shape: ElementShapes[typeof element.type] = generator.path(
-        path + line1 + line2,
-        generateRoughOptions(element, true, isDarkMode),
-      );
+      const mainOptions = generateRoughOptions(element, true, isDarkMode);
+      const lineOptions = { ...mainOptions, fill: undefined };
+
+      const shape: ElementShapes[typeof element.type] = [
+        generator.path(path, mainOptions),
+        generator.path(line1, lineOptions),
+        generator.path(line2, lineOptions),
+      ];
       return shape;
     }
     case "queue": {
@@ -901,12 +905,15 @@ const _generateElementShape = (
       const h = element.height;
       
       const arrowPath = ` M ${w / 2 - r} ${h / 4} L ${w / 2 + r} ${h / 2} L ${w / 2 - r} ${h * 3 / 4} M ${w / 2 - r * 2.5} ${h / 4} L ${w / 2 - r / 2} ${h / 2} L ${w / 2 - r * 2.5} ${h * 3 / 4}`;
-      const path = `M ${r} 0 A ${r} ${h / 2} 0 1 0 ${r} ${h} A ${r} ${h / 2} 0 1 0 ${r} 0 M ${w - r} 0 A ${r} ${h / 2} 0 1 0 ${w - r} ${h} M ${r} 0 L ${w - r} 0 M ${r} ${h} L ${w - r} ${h}` + arrowPath;
+      const path = `M ${r} 0 A ${r} ${h / 2} 0 1 0 ${r} ${h} A ${r} ${h / 2} 0 1 0 ${r} 0 M ${w - r} 0 A ${r} ${h / 2} 0 1 0 ${w - r} ${h} M ${r} 0 L ${w - r} 0 M ${r} ${h} L ${w - r} ${h}`;
       
-      const shape: ElementShapes[typeof element.type] = generator.path(
-        path,
-        generateRoughOptions(element, true, isDarkMode),
-      );
+      const mainOptions = generateRoughOptions(element, true, isDarkMode);
+      const lineOptions = { ...mainOptions, fill: undefined };
+
+      const shape: ElementShapes[typeof element.type] = [
+        generator.path(path, mainOptions),
+        generator.path(arrowPath, lineOptions),
+      ];
       return shape;
     }
     case "cloud": {
@@ -914,10 +921,11 @@ const _generateElementShape = (
       const h = element.height;
       const path = `M ${w * 0.25} ${h * 0.75} C ${w * 0.1} ${h * 0.75}, 0 ${h * 0.55}, ${w * 0.15} ${h * 0.4} C ${w * 0.15} ${h * 0.2}, ${w * 0.4} ${h * 0.1}, ${w * 0.5} ${h * 0.25} C ${w * 0.65} ${h * 0.05}, ${w * 0.9} ${h * 0.2}, ${w * 0.85} ${h * 0.45} C ${w} ${h * 0.5}, ${w * 0.95} ${h * 0.8}, ${w * 0.75} ${h * 0.75} Z`;
       
-      const shape: ElementShapes[typeof element.type] = generator.path(
-        path,
-        generateRoughOptions(element, true, isDarkMode),
-      );
+      const mainOptions = generateRoughOptions(element, true, isDarkMode);
+
+      const shape: ElementShapes[typeof element.type] = [
+        generator.path(path, mainOptions)
+      ];
       return shape;
     }
     case "line":

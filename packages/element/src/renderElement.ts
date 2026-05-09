@@ -395,7 +395,6 @@ const drawElementOnCanvas = (
     case "iframe":
     case "embeddable":
     case "diamond":
-    case "cylinder":
     case "ellipse": {
       context.lineJoin = "round";
       context.lineCap = "round";
@@ -403,6 +402,9 @@ const drawElementOnCanvas = (
       rc.draw(ShapeCache.generateElementShape(element, renderConfig));
       break;
     }
+    case "cylinder":
+    case "queue":
+    case "cloud":
     case "arrow":
     case "line": {
       context.lineJoin = "round";
@@ -882,6 +884,8 @@ export const renderElement = (
     case "rectangle":
     case "diamond":
     case "cylinder":
+    case "queue":
+    case "cloud":
     case "ellipse":
     case "line":
     case "arrow":
